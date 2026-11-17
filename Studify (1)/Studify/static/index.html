@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17372d">
+  <title>Painel · Studify</title>
+  <link rel="stylesheet" href="/static/estilo.css">
+  <script src="/static/comum.js" defer></script>
+  <script src="/static/script.js" defer></script>
+</head>
+<body>
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+  <aside class="lateral">
+    <a class="marca" href="/" aria-label="Studify, painel">
+      <span class="marca-icone" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>Studify<span class="marca-ponto">.</span></span>
+    </a>
+    <nav aria-label="Menu principal">
+      <a href="/" aria-current="page"><span class="icone-nav" aria-hidden="true">▦</span> Painel</a>
+      <a href="/pendencias"><span class="icone-nav relogio" aria-hidden="true"></span> Pendências</a>
+      <a href="/#materias"><span class="icone-nav" aria-hidden="true">▤</span> Matérias</a>
+      <a href="/#usuarios"><span class="icone-nav pessoa" aria-hidden="true"></span> Usuários</a>
+    </nav>
+  </aside>
+  <main class="principal" id="conteudo">
+    <div class="area">
+      <header class="topo">
+        <h1>Visão geral</h1>
+        <time id="hoje"></time>
+      </header>
+      <section class="hero" aria-labelledby="titulo-plano">
+        <div class="hero-texto">
+          <h2 id="titulo-plano">Seu plano<br>de estudos<span class="hero-ponto">.</span></h2>
+          <p id="resumo-plano">Acompanhe tarefas, prioridades e prazos.</p>
+          <a class="botao botao-claro" href="/pendencias">Ver pendências <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="hero-grafico">
+          <div class="anel" id="anel">
+            <div><strong id="progresso">—</strong><span>concluídas</span></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="indicadores" aria-label="Resumo das tarefas">
+        <a class="indicador" href="/pendencias">
+          <span><i class="ponto ponto-verde" aria-hidden="true"></i> Em aberto</span>
+          <strong id="total-abertas">—</strong>
+        </a>
+        <a class="indicador" href="/pendencias?filtro=vencidas">
+          <span><i class="ponto ponto-vermelho" aria-hidden="true"></i> Vencidas</span>
+          <strong id="total-vencidas">—</strong>
+        </a>
+        <div class="indicador">
+          <span><i class="ponto ponto-azul" aria-hidden="true"></i> Concluídas</span>
+          <strong id="total-concluidas">—</strong>
+        </div>
+      </div>
+      <p id="aviso" role="status">Carregando os registros…</p>
+
+      <section class="gerenciar" id="tarefas" aria-labelledby="titulo-tarefas">
+        <h2 id="titulo-tarefas">Tarefas</h2>
+        <div class="painel">
+          <form>
+            <h3>Nova tarefa</h3>
+            <fieldset disabled>
+              <label for="tarefa-titulo">Título</label>
+              <input id="tarefa-titulo" name="titulo" required maxlength="150">
+
+              <label for="tarefa-materia">Matéria</label>
+              <select id="tarefa-materia" name="id_materia" required></select>
+
+              <label for="tarefa-descricao">Descrição (opcional)</label>
+              <textarea id="tarefa-descricao" name="descricao" rows="2"></textarea>
+
+              <div class="campos">
+                <div>
+                  <label for="tarefa-prazo">Prazo</label>
+                  <input type="date" id="tarefa-prazo" name="prazo">
+                </div>
+                <div>
+                  <label for="tarefa-prioridade">Prioridade</label>
+                  <select id="tarefa-prioridade" name="prioridade">
+                    <option value="baixa">Baixa</option>
+                    <option value="media" selected>Média</option>
+                    <option value="alta">Alta</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="tarefa-status">Status</label>
+                  <select id="tarefa-status" name="status">
+                    <option value="pendente">Pendente</option>
+                    <option value="em_andamento">Em andamento</option>
+                    <option value="concluida">Concluída</option>
+                  </select>
+                </div>
+              </div>
+              <div class="acoes">
+                <button type="submit">Cadastrar</button>
+                <button type="button" class="cancelar secundario" hidden>Cancelar</button>
+              </div>
+            </fieldset>
+            <p class="mensagem" role="status" hidden></p>
+          </form>
+          <div class="consulta">
+            <h3>Todas as tarefas</h3>
+            <ul class="registros"></ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="gerenciar" id="materias" aria-labelledby="titulo-materias">
+        <h2 id="titulo-materias">Matérias</h2>
+        <div class="painel">
+          <form>
+            <h3>Nova matéria</h3>
+            <fieldset disabled>
+              <label for="materia-nome">Nome</label>
+              <input id="materia-nome" name="nome" required maxlength="100">
+
+              <label for="materia-usuario">Usuário</label>
+              <select id="materia-usuario" name="id_usuario" required></select>
+
+              <label for="materia-descricao">Descrição (opcional)</label>
+              <textarea id="materia-descricao" name="descricao" rows="2"></textarea>
+              <div class="acoes">
+                <button type="submit">Cadastrar</button>
+                <button type="button" class="cancelar secundario" hidden>Cancelar</button>
+              </div>
+            </fieldset>
+            <p class="mensagem" role="status" hidden></p>
+          </form>
+          <div class="consulta">
+            <h3>Matérias cadastradas</h3>
+            <ul class="registros"></ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="gerenciar" id="usuarios" aria-labelledby="titulo-usuarios">
+        <h2 id="titulo-usuarios">Usuários</h2>
+        <div class="painel">
+          <form>
+            <h3>Novo usuário</h3>
+            <fieldset disabled>
+              <label for="usuario-nome">Nome</label>
+              <input id="usuario-nome" name="nome" required maxlength="100">
+
+              <label for="usuario-email">E-mail</label>
+              <input type="email" id="usuario-email" name="email" required maxlength="255">
+
+              <label for="usuario-senha">Senha</label>
+              <input type="password" id="usuario-senha" name="senha" required
+                     maxlength="128" autocomplete="new-password">
+              <div class="acoes">
+                <button type="submit">Cadastrar</button>
+                <button type="button" class="cancelar secundario" hidden>Cancelar</button>
+              </div>
+            </fieldset>
+            <p class="mensagem" role="status" hidden></p>
+          </form>
+          <div class="consulta">
+            <h3>Usuários cadastrados</h3>
+            <ul class="registros"></ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

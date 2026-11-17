@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17372d">
+  <title>Pendências · Studify</title>
+  <link rel="stylesheet" href="/static/estilo.css">
+  <script src="/static/comum.js" defer></script>
+  <script src="/static/pendencias.js" defer></script>
+</head>
+<body>
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+  <aside class="lateral">
+    <a class="marca" href="/" aria-label="Studify, painel">
+      <span class="marca-icone" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>Studify<span class="marca-ponto">.</span></span>
+    </a>
+    <nav aria-label="Menu principal">
+      <a href="/"><span class="icone-nav" aria-hidden="true">▦</span> Painel</a>
+      <a href="/pendencias" aria-current="page"><span class="icone-nav relogio" aria-hidden="true"></span> Pendências</a>
+      <a href="/#materias"><span class="icone-nav" aria-hidden="true">▤</span> Matérias</a>
+      <a href="/#usuarios"><span class="icone-nav pessoa" aria-hidden="true"></span> Usuários</a>
+    </nav>
+  </aside>
+  <main class="principal" id="conteudo">
+    <div class="area">
+      <header class="topo">
+        <a class="voltar" href="/">← Voltar ao painel</a>
+        <time id="hoje"></time>
+      </header>
+      <header class="topo-pagina">
+        <div>
+          <h1>Tarefas pendentes</h1>
+          <p>Veja o que está em aberto e quanto tempo falta para cada entrega.</p>
+        </div>
+        <a class="botao" href="/#tarefas">+ Nova tarefa</a>
+      </header>
+
+      <div class="filtros" aria-label="Filtros de tarefas">
+        <div>
+          <label for="filtrar-prioridade">Prioridade</label>
+          <select id="filtrar-prioridade">
+            <option value="">Todas</option>
+            <option value="alta">Alta</option>
+            <option value="media">Média</option>
+            <option value="baixa">Baixa</option>
+          </select>
+        </div>
+        <div>
+          <label for="filtrar-prazo">Prazo</label>
+          <select id="filtrar-prazo">
+            <option value="">Todos</option>
+            <option value="vencidas">Vencidas</option>
+            <option value="hoje">Vencem hoje</option>
+            <option value="sem-prazo">Sem prazo</option>
+          </select>
+        </div>
+      </div>
+      <p id="aviso" role="status">Carregando as tarefas…</p>
+      <ul class="lista-pendencias" aria-label="Tarefas em aberto"></ul>
+    </div>
+  </main>
+</body>
+</html>
